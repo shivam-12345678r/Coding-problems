@@ -1,14 +1,8 @@
-class Solution(object):
-    def countBits(self, n):
-        res = []
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        bits = [0]*(n + 1)
         for i in range(n + 1):
-            k = bin(i).count('1')
-            res.append(k)
-        return res
+            bits[i] = bits[i >> 1] + (i & 1)
+        return bits
 
-
-        """
-        :type n: int
-        :rtype: List[int]
-        """
         
