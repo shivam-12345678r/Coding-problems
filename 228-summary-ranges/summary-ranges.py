@@ -1,19 +1,22 @@
-class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
-        if not nums:return [] #Handling the edge case
-        ans = []
-        start = end  = str(nums[0]) #Initially we will keep the start and end pos and at same 
-        for i in range(1 , len(nums)):
-            if nums[i] != nums[i - 1] + 1:  #Checking if numbers are bounded 
-                if start != end:     #If there exist a incrementing part
-                    ans.append(start+'->'+end)
-                else:
-                    ans.append(start)
-                start = end = str(nums[i])
+class Solution(object):
+    def summaryRanges(self, nums):
+        res = []
+        if not nums:
+            return res
+        start = nums[0]
+        end = nums[0]
+        for n in nums[1:]:
+            if n == end + 1:
+                end = n
             else:
-                end = str(nums[i]) #Increasing the size of the existing bounds
-        if start != end: #To handle the remaining elements out of the loop
-            ans.append(start+'->'+end)
+                if start == end:
+                    res.append(str(start))
+                else:
+                    res.append(str(start) + "->" + str(end))
+                start = n
+                end = n
+        if start == end:
+            res.append(str(start))
         else:
-            ans.append(start)
-        return ans
+            res.append(str(start) + "->" + str(end))
+        return res
