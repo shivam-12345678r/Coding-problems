@@ -5,15 +5,17 @@
 
 class Solution(object):
     def firstBadVersion(self, n):
-        l = 1
-        r = n 
-        while l < r:
-            mid = l + (r - l)//2
-            if isBadVersion(mid) :
-                r = mid
+        lo = 1
+        hi = n
+        while lo < hi:
+            mid = (lo + hi)//2
+            if isBadVersion(mid):
+                hi = mid
             else:
-                l = mid + 1
-        return l
-
-      
+                lo = mid + 1
+        return lo
+        """
+        :type n: int
+        :rtype: int
+        """
         
